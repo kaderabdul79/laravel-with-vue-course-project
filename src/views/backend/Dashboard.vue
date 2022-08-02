@@ -18,7 +18,7 @@
       <!-- End of Topbar -->
 
       <!-- Begin Page Content -->
-        <MainContent />
+        <router-view></router-view>
       <!-- /.container-fluid -->
 
     </div>
@@ -41,10 +41,9 @@
 <script>
 import Sidebar from '../../components/backend/Sidebar.vue';
 import Topbar from '../../components/backend/Topbar.vue';
-import MainContent from '../../components/backend/MainContent.vue';
 import Footer from '../../components/backend/Footer.vue';
 export default {
-    components: { Sidebar, Topbar, MainContent, Footer }
+    components: { Sidebar, Topbar, Footer }
 }
 </script>
 

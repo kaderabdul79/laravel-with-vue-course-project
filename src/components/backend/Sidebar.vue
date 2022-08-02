@@ -14,9 +14,9 @@
 
 <!-- Nav Item - Dashboard -->
 <li class="nav-item active">
-  <a class="nav-link" href="../../public/backend/index.html">
+  <router-link class="nav-link" :to="{name: 'overview'}">
     <i class="fas fa-fw fa-tachometer-alt"></i>
-    <span>Dashboard</span></a>
+    <span>Dashboard</span></router-link>
 </li>
 
 <!-- Divider -->
@@ -31,11 +31,11 @@
 <li class="nav-item">
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
     <i class="fas fa-fw fa-cog"></i>
-    <span>Components</span>
+    <span>Manage Category</span>
   </a>
   <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
-      <router-link class="collapse-item" to="/">Buttons</router-link>
+      <router-link class="collapse-item" :to="{name: 'manageCategory'}">manageCategory</router-link>
     </div>
   </div>
 </li>
