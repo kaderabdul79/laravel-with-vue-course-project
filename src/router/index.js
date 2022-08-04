@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Dashboard from '../views/backend/Dashboard.vue'
-import ManageCategory from '@/views/backend/category/ManageCategory.vue'
 import DashboardOverview from '../views/backend/DashboardOverview.vue'
-
+import ManageCourse from '@/views/backend/course/ManageCourse.vue'
+import CreateCourse from '@/views/backend/course/CreateCourse.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -17,9 +17,14 @@ const router = createRouter({
           component: DashboardOverview
         },
         {
-          path: 'managecategory',
-          name: 'manageCategory',
-          component: ManageCategory
+          path: 'managecourse',
+          name: 'manageCourse',
+          component: ManageCourse
+        },
+        {
+          path: 'create/course',
+          name: 'createCourse',
+          component: CreateCourse
         },
       ]
     },

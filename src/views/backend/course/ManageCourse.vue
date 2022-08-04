@@ -7,7 +7,7 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
   <div class="card-header py-3">
-    <h6 class="m-0 font-weight-bold text-primary">Manage Courses</h6>
+    <router-link :to="{name: 'createCourse'}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Create New Course</router-link>
   </div>
   <div class="card-body">
     <div class="table-responsive">
@@ -21,6 +21,7 @@
             <th>Thumbnail</th>
             <th>Price</th>
             <th>Status</th>
+            <th>Action</th>
           </tr>
         </thead>
         <!-- <tfoot>
@@ -45,6 +46,10 @@
             </td>
             <td>{{course.price}} Tk.</td>
             <td>{{course.status}}</td>
+            <td>
+              <router-link to="/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Edit</router-link>
+              <router-link to="/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Delete</router-link>
+            </td>
           </tr>
         </tbody>
       </table>
