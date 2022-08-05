@@ -16,19 +16,26 @@ const router = createRouter({
           name: 'overview',
           component: DashboardOverview
         },
-        {
-          path: 'managecourse',
-          name: 'manageCourse',
-          component: ManageCourse
-        },
-        {
-          path: 'create/course',
-          name: 'createCourse',
-          component: CreateCourse
-        },
       ]
     },
-  ]
+    {
+      path: '/managecourse',
+      name: 'manageCourse',
+      component: ManageCourse
+    },
+    {
+      path: '/create/course',
+      name: 'createCourse',
+      component: CreateCourse
+    },
+    {
+      path: '/course/:id/delete',
+      name: 'deleteCourse',
+      component: ManageCourse,
+      props: true,
+    },
+
+  ] 
 })
 
 export default router

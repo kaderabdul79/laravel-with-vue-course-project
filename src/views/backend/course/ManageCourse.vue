@@ -24,17 +24,6 @@
             <th>Action</th>
           </tr>
         </thead>
-        <!-- <tfoot>
-          <tr>
-            <th>Id</th>
-            <th>Code</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Thumbnail</th>
-            <th>Price</th>
-            <th>Status</th>
-          </tr>
-        </tfoot> -->
         <tbody>
           <tr v-for="course in courses" :key="course.id">
             <td>{{course.id}}</td>
@@ -48,7 +37,7 @@
             <td>{{course.status}}</td>
             <td>
               <router-link to="/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Edit</router-link>
-              <router-link to="/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Delete</router-link>
+              <router-link @click="deleteCourse(course.id)" :to="{name: 'deleteCourse',params: {id:course.id}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Delete</router-link>
             </td>
           </tr>
         </tbody>
@@ -63,6 +52,7 @@
 <script>
 import CourseServices from '@/services/CourseServices.js';
 export default {
+  props: ['id'],
   data(){
     return {
       courses: [],
@@ -73,7 +63,13 @@ export default {
     .then(res => this.courses = res.data.courses)
     .catch(error => console.log(error))
   },
-  methods:{},
+  methods:{
+    deleteCourse(){
+      CourseServices.deleteCourse(this.id)
+      .then(res => console.log('deleted',this.id))
+      .catch(error => console.log(error))
+    }
+  },
   computed:{},
 }
 </script>

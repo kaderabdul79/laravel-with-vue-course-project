@@ -13,4 +13,7 @@ export default {
   getCourses() {
     return apiClient.get('courses')
   },
+  deleteCourse(id) {
+    return apiClient.delete('courses/'+ id)
+  },
 }
