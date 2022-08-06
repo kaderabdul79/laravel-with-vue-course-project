@@ -16,4 +16,14 @@ export default {
   deleteCourse(id) {
     return apiClient.delete('courses/'+ id)
   },
+  getCourse(id){
+    return apiClient.get('courses/'+id)
+  },
+  // categories
+  getCategories() {
+    return apiClient.get('categories')
+  },
+  getCategory(id){
+    return apiClient.get('categories/'+id)
+  }
 }
