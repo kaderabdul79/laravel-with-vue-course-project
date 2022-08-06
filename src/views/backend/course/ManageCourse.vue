@@ -17,6 +17,7 @@
             <th>Id</th>
             <th>Code</th>
             <th>Name</th>
+            <th>Category Name</th>
             <th>Description</th>
             <th>Thumbnail</th>
             <th>Price</th>
@@ -25,19 +26,20 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="course in courses" :key="course.id">
-            <td>{{course.id}}</td>
+          <tr v-for="(course,index) in courses" :key="course.id">
+            <td>{{++index}}</td>
             <td>{{course.code}}</td>
             <td>{{course.name}}</td>
+            <td>{{course.category.name}}</td>
             <td>{{course.description}}</td>
             <td>
               <img :src="course.image" alt="course thumbnail">
             </td>
             <td>{{course.price}} Tk.</td>
-            <td>{{course.status}}</td>
+            <td>{{course.status == 1 ? 'Active' : 'Inactive'}}</td>
             <td>
               <router-link :to="{name: 'CourseEdit',params: {id: course.id}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Edit</router-link>
-              <router-link to="" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Delete</router-link>
+              <router-link @click="deleteCourse(course.id)" to="" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Delete</router-link>
             </td>
           </tr>
         </tbody>
@@ -63,7 +65,15 @@ export default {
     .catch(error => console.log(error))
   },
   methods:{
-   
+    deleteCourse(id){
+      if(confirm("Are you sure to delete this course ?")){
+        CourseServices.deleteCourse(id)
+        .then(res=>{
+          if(res.status == 200){this.$router.push({name: 'manageCourse'})}
+        })
+        .catch(error=>{console.log(error)})
+      }
+    }
   },
   computed:{},
 }

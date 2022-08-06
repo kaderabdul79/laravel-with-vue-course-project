@@ -13,6 +13,9 @@ export default {
   getCourses() {
     return apiClient.get('courses')
   },
+  createCourse(course) {
+    return apiClient.post('courses/create',course)
+  },
   deleteCourse(id) {
     return apiClient.delete('courses/'+ id)
   },
