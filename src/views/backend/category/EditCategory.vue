@@ -1,8 +1,7 @@
 <template>
   <div class="container-fluid">
-    <h1>Edit Category</h1>
+    <h1 class="h3 mb-2 text-gray-800">Edit Category</h1>
     <div v-if="category">
-      <!-- {{category}} -->
       <form @submit.prevent="updateCategory">{{category}}
         <div class="form-group row">
           <div class="col-sm-6 mb-3 mb-sm-0">
@@ -21,7 +20,7 @@
   </template>
   
   <script>
-import CourseServices from '../../../services/CourseServices';
+import {Courses , Categories} from "@/services/ServicesProvider.js";
 
   export default {
     props: ['category'],
@@ -33,7 +32,7 @@ import CourseServices from '../../../services/CourseServices';
     created(){},
     methods:{
       updateCategory(){
-        CourseServices.updateCategory(this.category.id,this.category)
+        Categories.updateCategory(this.category.id,this.category)
         .then(res => console.log(res.data.data))
         .catch(error => console.log(error))
       }

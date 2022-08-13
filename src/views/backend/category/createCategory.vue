@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <h1 class="h3 mb-2 text-gray-800">Create New Category</h1>
-    <form @submit.prevent="createCategory">{{category}}
+    <form @submit.prevent="createCategory">
         <div class="form-group row">
           <div class="col-sm-6 mb-3 mb-sm-0">
             <input type="text" v-model="category.name" name="name" class="form-control mb-3" placeholder="category Name">
@@ -18,7 +18,7 @@
   </template>
   
   <script>
-import CourseServices from '../../../services/CourseServices.js';
+import {Categories} from "@/services/ServicesProvider.js";
 
   export default {
       data(){
@@ -33,8 +33,7 @@ import CourseServices from '../../../services/CourseServices.js';
     created(){},
     methods:{
       createCategory(){
-        // console.log('data')
-        CourseServices.createCategory(this.category)
+        Categories.createCategory(this.category)
         .then(res => console.log(res.data.data))
         .catch(error => console.log(data))
       }

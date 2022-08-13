@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import CourseServices from '@/services/CourseServices.js';
+import {Courses , Categories} from "@/services/ServicesProvider.js";
 export default {
   data(){
     return {
@@ -60,14 +60,14 @@ export default {
     }
   },
   created(){
-    CourseServices.getCourses()
+    Courses.getCourses()
     .then(res => this.courses = res.data.data)
     .catch(error => console.log(error))
   },
   methods:{
     deleteCourse(id){
       if(confirm("Are you sure to delete this course ?")){
-        CourseServices.deleteCourse(id)
+        Courses.deleteCourse(id)
         .then(res=>{
           if(res.status == 200){this.$router.push({name: 'manageCourse'})}
         })

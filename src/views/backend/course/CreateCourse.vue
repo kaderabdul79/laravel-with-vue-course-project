@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import CourseServices from '../../../services/CourseServices.js';
+import {Courses , Categories} from "@/services/ServicesProvider.js";
 
 export default {
   data(){
@@ -44,8 +44,7 @@ export default {
     }
   },
   created(){
-    CourseServices.getCategories()
-    // .then(res => console.log(res.data.data))
+    Categories.getCategories()
     .then(res => {this.categories = res.data.data})
     .catch(error => console.log(error))
   },
@@ -62,7 +61,7 @@ export default {
       }
     },
     submitNewCourse(){
-      CourseServices.createCourse(this.course)
+      Courses.createCourse(this.course)
       .then(res => {
         console.log(res.data),this.course = this.createNewCourse()})
       .catch(error =>  console.log(error))

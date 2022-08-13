@@ -31,7 +31,6 @@
       <td>{{category.status}}</td>
       <td>
         <router-link :to="{name: 'CategoryEdit',params: {id: category.id}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Edit</router-link>
-        <router-link :to="{name: 'CategoryDetails',params: {id: category.id}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Details</router-link>
         <button @click="deleteCategory(category.id)" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Delete</button>
       </td>
     </tr>
@@ -45,28 +44,24 @@
 </template>
 
 <script>
-import CourseServices from '@/services/CourseServices.js';
+import {Courses , Categories} from "@/services/ServicesProvider.js";
 export default {
   data(){
-  return {
-  categories: [],
-  }
+    return {
+      categories: [],
+    }
   },
   created(){
-    CourseServices.getCategories()
-  .then(res => this.categories = res.data.data
-  // console.log(res.data.data)
-  // 
-  )
-  .catch(error => console.log(error))
+    Categories.getCategories()
+    .then(res => this.categories = res.data.data)
+    .catch(error => console.log(error))
   },
   methods:{
-    deleteCategory(id){
-      // console.log(id)
-      CourseServices.deleteCategory(id)
-      .then(res => console.log("deleted",res.data))
-      .catch(error => console.log(error))
-    }
+      deleteCategory(id){
+        Categories.deleteCategory(id)
+        .then(res => console.log(res.data))
+        .catch(error => console.log(error))
+      }
   },
   computed:{},
   }

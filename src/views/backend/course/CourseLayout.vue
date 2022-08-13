@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import CourseServices from '@/services/CourseServices.js';
+import {Courses , Categories} from "@/services/ServicesProvider.js";
   export default {
       props: ['id'],
       data(){
@@ -14,7 +14,7 @@
       }
       },
       created(){
-        CourseServices.getCourse(this.id)
+        Courses.getCourse(this.id)
         .then(res => {
             this.course = res.data.data
         })
