@@ -14,7 +14,7 @@
       <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
           <tr>
-            <th>Id</th>
+            <th>SL.</th>
             <th>Code</th>
             <th>Name</th>
             <th>Category Name</th>
@@ -61,7 +61,7 @@ export default {
   },
   created(){
     CourseServices.getCourses()
-    .then(res => this.courses = res.data.courses)
+    .then(res => this.courses = res.data.data)
     .catch(error => console.log(error))
   },
   methods:{

@@ -3,15 +3,14 @@
     <h1>Edit Category</h1>
     <div v-if="category">
       <!-- {{category}} -->
-      <form @submit.prevent="">
+      <form @submit.prevent="updateCategory">{{category}}
         <div class="form-group row">
           <div class="col-sm-6 mb-3 mb-sm-0">
-            <input type="text" :value="category.name" name="name" class="form-control mb-3" placeholder="category Name">
-            <input type="text" :value="category.slug" name="slug" class="form-control mb-3" placeholder="category slug">
-            <textarea rows="4" :value="category.description" name="description" class="form-control mb-3" placeholder="Write description"></textarea>
+            <input type="text" v-model="category.name" name="name" class="form-control mb-3" placeholder="category Name">
+            <textarea rows="4" v-model="category.description" name="description" class="form-control mb-3" placeholder="Write description"></textarea>
             <div class="form-check col-sm-6 mb-3 mb-sm-0">
-              <input class="form-check-input" :value="category.status" type="radio" name="status">Published
-              <input class="form-check-input" :value="category.status" type="radio" name="status">Unpublish
+              <input class="form-check-input" v-model="category.status" value="1" type="radio" name="status">Published
+              <input class="form-check-input" v-model="category.status" value="0" type="radio" name="status">Unpublish
             </div>
           </div>
         </div>
@@ -22,6 +21,8 @@
   </template>
   
   <script>
+import CourseServices from '../../../services/CourseServices';
+
   export default {
     props: ['category'],
       data(){
@@ -30,11 +31,14 @@
          }
       },
     created(){},
-    methods:{},
+    methods:{
+      updateCategory(){
+        CourseServices.updateCategory(this.category.id,this.category)
+        .then(res => console.log(res.data.data))
+        .catch(error => console.log(error))
+      }
+    },
     computed:{},
   }
   </script>
   
-  <style scoped>
-  
-  </style>

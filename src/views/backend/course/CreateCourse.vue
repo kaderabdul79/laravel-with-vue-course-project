@@ -7,7 +7,6 @@
         <div class="form-group row">
           <div class="col-sm-6 mb-3 mb-sm-0">
             <input type="text" v-model="course.name" class="form-control mb-3" placeholder="course Name">
-            <input type="text" v-model="course.slug" class="form-control mb-3" placeholder="course slug">
             <input type="text" v-model="course.code" class="form-control mb-3" placeholder="course code">
             <!-- category -->
             <div class="field">
@@ -21,8 +20,8 @@
             <!-- Status -->
             Status
             <div class="form-check col-sm-6 mb-3 mb-sm-0">
-              <input v-model="course.status" value="1" class="form-check-input" type="radio" name="status">Published
-              <input v-model="course.status" value="0" class="form-check-input" type="radio" name="status">Unpublish
+              <input v-model="course.status" value="1" class="form-check-input" type="radio">Published
+              <input v-model="course.status" value="0" class="form-check-input" type="radio">Unpublish
             </div>
             <input type="text" v-model="course.price" class="form-control mb-3" placeholder="course fee">
             <!-- <input type="file" v-model="course.image" class="form-control" > -->
@@ -46,14 +45,14 @@ export default {
   },
   created(){
     CourseServices.getCategories()
-    .then(res => this.categories = res.data.categories)
+    // .then(res => console.log(res.data.data))
+    .then(res => {this.categories = res.data.data})
     .catch(error => console.log(error))
   },
   methods:{
     createNewCourse(){
       return {
         name: '',
-        slug: '',
         code: '',
         category_id: null,
         description: '',
@@ -63,9 +62,9 @@ export default {
       }
     },
     submitNewCourse(){
-      // alert(data)
       CourseServices.createCourse(this.course)
-      .then(res => console.log(res.data))
+      .then(res => {
+        console.log(res.data),this.course = this.createNewCourse()})
       .catch(error =>  console.log(error))
       // console.log(this.course);
     }

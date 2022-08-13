@@ -16,17 +16,30 @@ export default {
   createCourse(course) {
     return apiClient.post('courses/create',course)
   },
-  deleteCourse(id) {
-    return apiClient.delete('courses/'+ id)
-  },
   getCourse(id){
     return apiClient.get('courses/'+id)
   },
+  updateCourse(id,course) {
+    return apiClient.put('courses/'+ id +'/update',course)
+  },
+  deleteCourse(id) {
+    return apiClient.delete('courses/'+ id)
+  },
   // categories
+  createCategory(category) {
+    return apiClient.post('categories/create',category)
+  },
   getCategories() {
     return apiClient.get('categories')
   },
   getCategory(id){
     return apiClient.get('categories/'+id)
-  }
+  },
+  updateCategory(id,data){
+    // console.log('update',id,data)
+    return apiClient.put('categories/'+ id +'/update',data)
+  },
+  deleteCategory(id) {
+    return apiClient.delete('categories/'+ id)
+  },
 }

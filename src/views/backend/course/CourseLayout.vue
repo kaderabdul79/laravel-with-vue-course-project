@@ -16,7 +16,7 @@
       created(){
         CourseServices.getCourse(this.id)
         .then(res => {
-            this.course = res.data.course
+            this.course = res.data.data
         })
         .catch(error => {
             console.log(error)

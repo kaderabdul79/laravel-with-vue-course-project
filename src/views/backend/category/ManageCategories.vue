@@ -32,7 +32,7 @@
       <td>
         <router-link :to="{name: 'CategoryEdit',params: {id: category.id}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Edit</router-link>
         <router-link :to="{name: 'CategoryDetails',params: {id: category.id}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Details</router-link>
-        <router-link to="/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Delete</router-link>
+        <button @click="deleteCategory(category.id)" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Delete</button>
       </td>
     </tr>
   </tbody>
@@ -54,11 +54,19 @@ export default {
   },
   created(){
     CourseServices.getCategories()
-  .then(res => this.categories = res.data.categories)
+  .then(res => this.categories = res.data.data
+  // console.log(res.data.data)
+  // 
+  )
   .catch(error => console.log(error))
   },
   methods:{
-    
+    deleteCategory(id){
+      // console.log(id)
+      CourseServices.deleteCategory(id)
+      .then(res => console.log("deleted",res.data))
+      .catch(error => console.log(error))
+    }
   },
   computed:{},
   }
