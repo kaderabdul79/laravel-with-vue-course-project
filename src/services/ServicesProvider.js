@@ -13,7 +13,7 @@ const Courses = {
   getCourses() {
     return apiClient.get('courses')
   },
-  createCourse(course) {
+  createCourse(course,config) {
     return apiClient.post('courses/create',course)
   },
   getCourse(id){
