@@ -4,7 +4,7 @@
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800">All Courses List</h1>
 
-<!-- DataTales Example -->
+<!-- Data Tables-->
 <div class="card shadow mb-4">
   <div class="card-header py-3">
     <router-link :to="{name: 'CourseCreate'}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Create New Course</router-link>
@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import {Courses , Categories} from "@/services/ServicesProvider.js";
+import {Courses} from "@/services/ServicesProvider.js";
 export default {
   data(){
     return {
@@ -66,16 +66,34 @@ export default {
   },
   methods:{
     deleteCourse(id){
-      if(confirm("Are you sure to delete this course ?")){
-        Courses.deleteCourse(id)
+      this.$swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+         Courses.deleteCourse(id)
         .then(res=>{
-          if(res.status == 200){this.$router.push({name: 'manageCourse'})}
+          if(res.status == 200){
+            this.$swal.fire(
+            'Deleted!',
+            'This Course has been deleted.',
+            'success'
+            )
+          }
         })
-        .catch(error=>{console.log(error)})
-      }
+        .catch(error=>{
+          // console.log(error)
+          this.$swal.fire({position: 'top-end',icon: 'error',title: error.message,timer: 2000})
+        })
+        }
+      })
     }
   },
-  computed:{},
 }
 </script>
 
